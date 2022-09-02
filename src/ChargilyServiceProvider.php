@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace YasserBenaioua\Chargily;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use YasserBenaioua\Chargily\Commands\ChargilyCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class ChargilyServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('chargily-epay-laravel')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_skeleton_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_chargily-epay-laravel_table')
+            ->hasCommand(ChargilyCommand::class);
     }
 }

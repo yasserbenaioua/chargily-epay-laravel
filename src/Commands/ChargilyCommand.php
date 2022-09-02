@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace YasserBenaioua\Chargily\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class ChargilyCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'chargily-epay-laravel';
 
     public $description = 'My command';
 
