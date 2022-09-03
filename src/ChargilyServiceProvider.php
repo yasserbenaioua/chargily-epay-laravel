@@ -4,7 +4,6 @@ namespace YasserBenaioua\Chargily;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use YasserBenaioua\Chargily\Commands\ChargilyCommand;
 
 class ChargilyServiceProvider extends PackageServiceProvider
 {
@@ -17,9 +16,6 @@ class ChargilyServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('chargily-epay-laravel')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_chargily-epay-laravel_table')
-            ->hasCommand(ChargilyCommand::class);
+            ->hasConfigFile('Chargily');
     }
 }
