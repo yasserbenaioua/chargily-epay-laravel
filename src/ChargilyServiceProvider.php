@@ -16,6 +16,6 @@ class ChargilyServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('chargily-epay-laravel')
-            ->hasConfigFile('Chargily');
+            ->hasConfigFile('chargily');
     }
 }
