@@ -1,9 +1,10 @@
 <?php
+
 namespace YasserBenaioua\Chargily\Validators;
 
+use Illuminate\Support\Facades\Validator;
 use YasserBenaioua\Chargily\Exceptions\InvalidConfigurationsException;
 use YasserBenaioua\Chargily\Exceptions\ValidationException;
-use Illuminate\Support\Facades\Validator;
 
 class WebhookUrlConfigurationsValidator
 {
@@ -13,16 +14,18 @@ class WebhookUrlConfigurationsValidator
      * @var mixed
      */
     protected $configurations;
+
     /**
      * debug
      *
      * @var bool
      */
     protected $debug;
+
     /**
      * __construct
      *
-     * @param  array $configurations
+     * @param  array  $configurations
      * @return void
      */
     public function __construct(array $configurations, bool $debug = true)
@@ -30,31 +33,34 @@ class WebhookUrlConfigurationsValidator
         $this->configurations = $configurations;
         $this->debug = $debug;
     }
+
     /**
      * validate
      *
-     * @param  array $array
+     * @param  array  $array
      * @return true
      */
-    public function validate() : array
+    public function validate(): array
     {
         $configurations = $this->configurations;
-        $validator = new Validator;
-        $validation = $validator->make($configurations, [
-            "api_key"               =>      "required",
-            "api_secret"            =>      "required"
+
+        $validation = Validator::make($configurations, [
+            'api_key' => 'required',
+            'api_secret' => 'required',
         ]);
         $validation->validate();
         if ($validation->fails()) {
             throw new ValidationException($validation->errors());
         }
+
         return $configurations;
     }
+
     /**
      * throwException
      *
-     * @param  string $message
-     * @param  int $code
+     * @param  string  $message
+     * @param  int  $code
      * @return void
      */
     protected function throwException(string $message, int $code = 0)

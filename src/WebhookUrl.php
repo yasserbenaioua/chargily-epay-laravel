@@ -10,18 +10,21 @@ class WebhookUrl
      * @var string
      */
     protected $method = 'POST';
+
     /**
      * configurations
      *
      * @var \Chargily\ePay\Core\Configuration
      */
     protected $configurations;
+
     /**
      * cachedHeaders
      *
      * @var null|array
      */
     protected $cachedHeaders = null;
+
     /**
      * cachedContent
      *
@@ -32,14 +35,16 @@ class WebhookUrl
     /**
      * __construct
      *
-     * @param  Configurations $configurations
+     * @param  Configurations  $configurations
      * @return void
      */
     public function __construct(Configuration $configurations)
     {
         $this->configurations = $configurations;
+        dd($configurations);
         $configurations->validateWebhookConfigurations();
     }
+
     /**
      * checkResponse
      *
@@ -47,10 +52,21 @@ class WebhookUrl
      */
     public function check(): bool
     {
-        $computedSignature = hash_hmac('sha256', $this->getContent(), $this->configurations->getApiSecret());
+        $computedSignature = hash_hmac('sha256', $this->getContent(), $this->getApiSecret());
 
         return hash_equals($computedSignature, $this->getSignature());
     }
+
+    /**
+     * getApiSecret
+     *
+     * @return string
+     */
+    public function getApiSecret(): string
+    {
+        return config('chargily.secret');
+    }
+
     /**
      * getInvoiceDetails
      *
@@ -73,8 +89,10 @@ class WebhookUrl
         } elseif (isset($this->getHeaders()['Signature'])) {
             return $this->getHeaders()['Signature'];
         }
-        return "";
+
+        return '';
     }
+
     /**
      * getContent
      *
@@ -82,8 +100,11 @@ class WebhookUrl
      */
     protected function getContent(): ?string
     {
-        return $this->cachedContent = ($this->cachedContent) ? $this->cachedContent : file_get_contents("php://input");
+        return $this->cachedContent = ($this->cachedContent)
+            ? $this->cachedContent
+            : file_get_contents('php://input');
     }
+
     /**
      * getContentToArray
      *
@@ -93,6 +114,7 @@ class WebhookUrl
     {
         return json_decode($this->getContent(), true) ?? [];
     }
+
     /**
      * getHeaders
      *

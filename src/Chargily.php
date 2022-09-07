@@ -2,10 +2,6 @@
 
 namespace YasserBenaioua\Chargily;
 
-use YasserBenaioua\Chargily\Configuration;
-use YasserBenaioua\Chargily\RedirectUrl;
-use YasserBenaioua\Chargily\WebhookUrl;
-
 class Chargily
 {
     /**
@@ -14,16 +10,18 @@ class Chargily
      * @var Configurations
      */
     protected Configuration $configurations;
+
     /**
      * cachedUrl
      *
      * @var null|string
      */
     protected ?string $cachedRedirectUrl = null;
+
     /**
      * __construct
      *
-     * @param  array|Configurations $configurations
+     * @param  array|Configurations  $configurations
      * @return void
      */
     public function __construct(array|Configuration $configurations)
@@ -34,6 +32,7 @@ class Chargily
             $this->configurations = $configurations;
         }
     }
+
     /**
      * getRedirectUrl
      *
@@ -43,10 +42,11 @@ class Chargily
     {
         return $this->cachedRedirectUrl = ($this->cachedRedirectUrl) ? $this->cachedRedirectUrl : (new RedirectUrl($this->configurations))->getRedirectUrl();
     }
+
     /**
      * checkResponse
      *
-     * @param  array $params
+     * @param  array  $params
      * @return void
      */
     public function checkResponse()
@@ -55,6 +55,7 @@ class Chargily
 
         return (new WebhookUrl($this->configurations))->check();
     }
+
     /**
      * getResponseDetails
      *

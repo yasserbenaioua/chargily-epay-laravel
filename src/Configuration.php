@@ -2,9 +2,9 @@
 
 namespace YasserBenaioua\Chargily;
 
+use Illuminate\Support\Str;
 use YasserBenaioua\Chargily\Validators\RedirectUrlConfigurationsValidator;
 use YasserBenaioua\Chargily\Validators\WebhookUrlConfigurationsValidator;
-use Illuminate\Support\Str;
 
 class Configuration
 {
@@ -25,8 +25,8 @@ class Configuration
      */
     public function __construct(array $configurations)
     {
-        if (! array_key_exists("options", $configurations)) {
-            $configurations["options"] = $this->defualtConfiguration();
+        if (! array_key_exists('options', $configurations)) {
+            $configurations['options'] = $this->defualtConfiguration();
         }
         $this->configurations = $configurations;
     }
@@ -34,48 +34,53 @@ class Configuration
     /**
      * @return mixed
      * This method is responsible for dynamic get configurations.
+     *
      * @throws \Exception
      */
-    public function __call($name, $arguments) : mixed
+    public function __call($name, $arguments): mixed
     {
-        $name = Str::after($name, "get");
+        $name = Str::after($name, 'get');
         if (is_null($name)) {
-            throw new \Exception("Undefined getter");
+            throw new \Exception('Undefined getter');
         }
-        $method = Str::snake($name, "_");
+        $method = Str::snake($name, '_');
         if ($this->configPrefix !== null) {
             if (! array_key_exists($method, $this->configurations[$this->configPrefix])) {
-                throw new \Exception("Undefined configuration ".$this->configPrefix.".".$method);
+                throw new \Exception('Undefined configuration '.$this->configPrefix.'.'.$method);
             }
-            $value =  $this->configurations[$this->configPrefix][$method];
+            $value = $this->configurations[$this->configPrefix][$method];
         } else {
             if (! array_key_exists($method, $this->configurations)) {
-                throw new \Exception("Undefined configuration ".$method);
+                throw new \Exception('Undefined configuration '.$method);
             }
             $value = $this->configurations[$method];
         }
         $this->configPrefix = null;
+
         return $value;
     }
 
     /**
      * @method from
+     *
      * @param string key
      * Set the desired prefix
      * @return Configuration
      */
-    public function from(string $key) : Configuration
+    public function from(string $key): Configuration
     {
         $this->configPrefix = $key;
+
         return $this;
     }
 
     /**
      * @method validateWebhookConfigurations
      * This method will validate the webhook configuration
+     *
      * @return array
      */
-    public function validateWebhookConfigurations()
+    public function validateWebhookConfigurations(): array
     {
         return (new WebhookUrlConfigurationsValidator($this->configurations, true))->validate();
     }
@@ -83,9 +88,10 @@ class Configuration
     /**
      * @method validateRedirectConfigurations
      * This method will validate the redirect configuration
+     *
      * @return array
      */
-    public function validateRedirectConfigurations()
+    public function validateRedirectConfigurations(): array
     {
         return (new RedirectUrlConfigurationsValidator($this->configurations, true))->validate();
     }
@@ -93,13 +99,14 @@ class Configuration
     /**
      * @method defualtConfiguration
      * Store the default config for options
+     *
      * @return array
      */
-    public function defualtConfiguration() : array
+    public function defualtConfiguration(): array
     {
         return [
-            "headers" => [],
-            "timeout" => 20
+            'headers' => [],
+            'timeout' => 20,
         ];
     }
 }
