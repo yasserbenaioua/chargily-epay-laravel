@@ -96,10 +96,11 @@ class Configuration
     public function urls(): array
     {
         return [
-            'back_url'      => config('chargily.back_url'),
-            'webhook_url'   => config('chargily.webhook_url')
+            'back_url' => config('chargily.back_url'),
+            'webhook_url' => config('chargily.webhook_url'),
         ];
     }
+
     /**
      * @method defualtConfiguration
      * Store the default config for options
