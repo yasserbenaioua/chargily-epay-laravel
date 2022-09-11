@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\WebhookClient\SignatureValidator\SignatureValidator;
 use Spatie\WebhookClient\WebhookConfig;
+use YasserBenaioua\Chargily\Exceptions\InvalidConfig;
 
 class ChargilySignatureValidator implements SignatureValidator
 {
@@ -26,7 +27,7 @@ class ChargilySignatureValidator implements SignatureValidator
         $signingSecret = $config->signingSecret;
 
         if (empty($signingSecret)) {
-            return false;
+            throw InvalidConfig::secretKeyNotSet();
         }
         $computedSignature = hash_hmac('sha256', $request->getContent(), $signingSecret);
 

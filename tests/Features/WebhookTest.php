@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Route;
+use YasserBenaioua\Chargily\Exceptions\InvalidConfig;
 use YasserBenaioua\Chargily\Tests\TestClasses\HandleChargilyWebhookJob;
 use YasserBenaioua\Chargily\Tests\TestClasses\HandleChargilyWebhookNumberTwoJob;
 
@@ -17,7 +18,6 @@ beforeEach(function () {
 });
 
 it('will accept a webhook with a valid signature', function () {
-
     $payload = ['a' => 1];
 
     $this
@@ -66,3 +66,14 @@ it('will dispatch a handle job', function () {
     Bus::assertDispatched(HandleChargilyWebhookJob::class);
     Bus::assertDispatched(HandleChargilyWebhookNumberTwoJob::class);
 });
+
+it('will throw an exception if secret key not set', function () {
+    $this->withoutExceptionHandling();
+
+    config()->set('chargily.secret', '');
+
+    $payload = [];
+
+    $this->postJson('webhooks', $payload, addSignature($payload));
+
+})->throws(InvalidConfig::class);
