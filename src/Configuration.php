@@ -4,7 +4,6 @@ namespace YasserBenaioua\Chargily;
 
 use Illuminate\Support\Str;
 use YasserBenaioua\Chargily\Validators\RedirectUrlConfigurationsValidator;
-use YasserBenaioua\Chargily\Validators\WebhookUrlConfigurationsValidator;
 
 class Configuration
 {
@@ -25,6 +24,9 @@ class Configuration
      */
     public function __construct(array $configurations)
     {
+        if (! array_key_exists('urls', $configurations)) {
+            $configurations['urls'] = $this->urls();
+        }
         if (! array_key_exists('options', $configurations)) {
             $configurations['options'] = $this->defualtConfiguration();
         }
@@ -75,17 +77,6 @@ class Configuration
     }
 
     /**
-     * @method validateWebhookConfigurations
-     * This method will validate the webhook configuration
-     *
-     * @return array
-     */
-    public function validateWebhookConfigurations(): array
-    {
-        return (new WebhookUrlConfigurationsValidator($this->configurations, true))->validate();
-    }
-
-    /**
      * @method validateRedirectConfigurations
      * This method will validate the redirect configuration
      *
@@ -96,6 +87,19 @@ class Configuration
         return (new RedirectUrlConfigurationsValidator($this->configurations, true))->validate();
     }
 
+    /**
+     * @method urls
+     * Store the default config for options
+     *
+     * @return array
+     */
+    public function urls(): array
+    {
+        return [
+            'back_url'      => config('chargily.back_url'),
+            'webhook_url'   => config('chargily.webhook_url')
+        ];
+    }
     /**
      * @method defualtConfiguration
      * Store the default config for options

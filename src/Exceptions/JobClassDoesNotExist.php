@@ -1,4 +1,5 @@
 <?php
+
 namespace YasserBenaioua\Chargily\Exceptions;
 
 use Exception;

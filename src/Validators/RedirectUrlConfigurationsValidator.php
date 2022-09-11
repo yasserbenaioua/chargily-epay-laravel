@@ -54,8 +54,6 @@ class RedirectUrlConfigurationsValidator
         $configurations = $this->configurations;
 
         $validation = Validator::make($configurations, [
-            // "api_key"               =>      "required",
-            // "api_secret"            =>      "required",
             'urls.*' => 'required|url',
             'mode' => 'required|in:'.implode(',', $this->availlable_modes),
             'payment' => 'required|array',

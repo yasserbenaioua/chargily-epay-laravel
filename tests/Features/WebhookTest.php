@@ -13,7 +13,7 @@ beforeEach(function () {
 
     Bus::fake([
         HandleChargilyWebhookJob::class,
-        HandleChargilyWebhookNumberTwoJob::class
+        HandleChargilyWebhookNumberTwoJob::class,
     ]);
 });
 
@@ -75,5 +75,4 @@ it('will throw an exception if secret key not set', function () {
     $payload = [];
 
     $this->postJson('webhooks', $payload, addSignature($payload));
-
 })->throws(InvalidConfig::class);

@@ -2,10 +2,10 @@
 
 namespace YasserBenaioua\Chargily\Jobs;
 
-use YasserBenaioua\Chargily\Models\ChargilyWebhookCall;
-use YasserBenaioua\Chargily\Exceptions\JobClassDoesNotExist;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 use Spatie\WebhookClient\Models\WebhookCall;
+use YasserBenaioua\Chargily\Exceptions\JobClassDoesNotExist;
+use YasserBenaioua\Chargily\Models\ChargilyWebhookCall;
 
 class ProcessChargilyWebhookJob extends ProcessWebhookJob
 {

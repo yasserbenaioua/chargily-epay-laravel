@@ -3,12 +3,11 @@
 namespace YasserBenaioua\Chargily\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use YasserBenaioua\Chargily\ChargilySignatureValidator;
 use Spatie\WebhookClient\Exceptions\InvalidWebhookSignature;
 use Spatie\WebhookClient\WebhookConfig;
 use Spatie\WebhookClient\WebhookProcessor;
 use Symfony\Component\HttpFoundation\Response;
+use YasserBenaioua\Chargily\ChargilySignatureValidator;
 
 class ChargilyWebhookController
 {

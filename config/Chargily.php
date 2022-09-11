@@ -1,15 +1,15 @@
 <?php
 
-use YasserBenaioua\Chargily\Models\ChargilyWebhookCall;
-use YasserBenaioua\Chargily\Jobs\ProcessChargilyWebhookJob;
 use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
+use YasserBenaioua\Chargily\Jobs\ProcessChargilyWebhookJob;
+use YasserBenaioua\Chargily\Models\ChargilyWebhookCall;
 
 return [
 
-    'key'           => env('CHARGILY_API_KEY'),
-    'secret'        => env('CHARGILY_API_SECRET'),
-    'back_url'      => 'https://c85e-41-105-5-5.ngrok.io/back',
-    'webhook_url'   => 'https://c85e-41-105-5-5.ngrok.io/chargily/webhook',
+    'key' => env('CHARGILY_API_KEY'),
+    'secret' => env('CHARGILY_API_SECRET'),
+    'back_url' => 'https://c85e-41-105-5-5.ngrok.io/back',
+    'webhook_url' => 'https://c85e-41-105-5-5.ngrok.io/chargily/webhook',
 
     /*
      * You can define the job that should be run when a chargily webhook hits your application
