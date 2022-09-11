@@ -6,8 +6,8 @@ use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
 
 return [
 
-    'key'           => env('CHARGILY_API_KEY', 'api_MmrIjunBOQuJIx9VtJscf5qWNpePJdjIqwHtvjo7unluwO5dpTQnjkq1jesfqtRu'),
-    'secret'        => env('CHARGILY_API_SECRET', 'secret_fb6efd31d2df6556b109ddb98a3152106a7814bcf727be5238e718b74b59fafc'),
+    'key'           => env('CHARGILY_API_KEY'),
+    'secret'        => env('CHARGILY_API_SECRET'),
     'back_url'      => 'https://c85e-41-105-5-5.ngrok.io/back',
     'webhook_url'   => 'https://c85e-41-105-5-5.ngrok.io/chargily/webhook',
 

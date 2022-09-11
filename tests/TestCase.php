@@ -7,11 +7,6 @@ use YasserBenaioua\Chargily\ChargilyServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     protected function getPackageProviders($app)
     {
         return [
@@ -23,9 +18,7 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'testing');
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_chargily-epay-laravel_table.php.stub';
+        $migration = include __DIR__.'/../database/migrations/create_chargily_webhook_calls_table.php.stub';
         $migration->up();
-        */
     }
 }
