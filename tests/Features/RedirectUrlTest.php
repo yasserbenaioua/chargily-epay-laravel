@@ -1,7 +1,7 @@
 <?php
 
-use YasserBenaioua\Chargily\Chargily;
 use Illuminate\Support\Str;
+use YasserBenaioua\Chargily\Chargily;
 
 it('will return the redirect url', function () {
     config()->set('chargily.key', 'api_MmrIjunBOQuJIx9VtJscf5qWNpePJdjIqwHtvjo7unluwO5dpTQnjkq1jesfqtRu');
@@ -21,9 +21,9 @@ it('will return the redirect url', function () {
         ],
     ]);
 
-    $redirectUrl    = $chargily->getRedirectUrl();
-    $token          = Str::after($redirectUrl, 'checkout/');
-    $tokenLength    = Str::of($token)->length();
+    $redirectUrl = $chargily->getRedirectUrl();
+    $token = Str::after($redirectUrl, 'checkout/');
+    $tokenLength = Str::of($token)->length();
 
     expect($redirectUrl)->toStartWith('https://epay.chargily.com.dz');
     expect($tokenLength)->toEqual(64);
