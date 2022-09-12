@@ -58,10 +58,7 @@
         "laravel": {
             "providers": [
                 "YasserBenaioua\\Chargily\\ChargilyServiceProvider"
-            ],
-            "aliases": {
-                "Chargily": "YasserBenaioua\\Chargily\\Facades\\Chargily"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",

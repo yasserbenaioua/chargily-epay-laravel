@@ -6,7 +6,7 @@ use Exception;
 
 class InvalidConfig extends Exception
 {
-    public static function secretKeyNotSet(): InvalidConfig
+    public static function secretKeyNotSet(): self
     {
         return new static('The chargily secret key is not set. Make sure that the `secret` config key is set to the correct value.');
     }

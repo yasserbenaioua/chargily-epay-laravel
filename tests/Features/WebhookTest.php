@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Route;
 use YasserBenaioua\Chargily\Exceptions\InvalidConfig;
+use YasserBenaioua\Chargily\Exceptions\JobClassDoesNotExist;
 use YasserBenaioua\Chargily\Tests\TestClasses\HandleChargilyWebhookJob;
 use YasserBenaioua\Chargily\Tests\TestClasses\HandleChargilyWebhookNumberTwoJob;
 
@@ -76,3 +77,15 @@ it('will throw an exception if secret key not set', function () {
 
     $this->postJson('webhooks', $payload, addSignature($payload));
 })->throws(InvalidConfig::class);
+
+it('will throw an exception when a non-existing job class is used', function () {
+    $this->withoutExceptionHandling();
+
+    config()->set('chargily.jobs', [
+        NotExistingClass::class
+    ]);
+
+    $payload = ['action' => 'created'];
+
+    $this->postJson('webhooks', $payload, addSignature($payload));
+})->throws(JobClassDoesNotExist::class);

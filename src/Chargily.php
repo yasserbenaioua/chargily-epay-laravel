@@ -2,12 +2,14 @@
 
 namespace YasserBenaioua\Chargily;
 
+use YasserBenaioua\Chargily\Configuration;
+
 class Chargily
 {
     /**
      * configurations
      *
-     * @var Configurations
+     * @var Configuration
      */
     protected Configuration $configurations;
 
@@ -21,7 +23,7 @@ class Chargily
     /**
      * __construct
      *
-     * @param  array|Configurations  $configurations
+     * @param  array|Configuration  $configurations
      * @return void
      */
     public function __construct(array|Configuration $configurations)

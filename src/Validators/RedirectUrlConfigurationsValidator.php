@@ -20,8 +20,6 @@ class RedirectUrlConfigurationsValidator
      */
     protected array $availlable_modes = ['CIB', 'EDAHABIA'];
 
-    protected array $availlable_urls = ['back_url', 'webhook_url'];
-
     /**
      * __construct
      *
