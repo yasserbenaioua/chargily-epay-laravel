@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use Spatie\WebhookClient\Exceptions\InvalidWebhookSignature;
 use Spatie\WebhookClient\WebhookConfig;
 use Spatie\WebhookClient\WebhookProcessor;
+use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
 use Symfony\Component\HttpFoundation\Response;
-use YasserBenaioua\Chargily\ChargilySignatureValidator;
+use YasserBenaioua\Chargily\Validators\ChargilySignatureValidator;
+use YasserBenaioua\Chargily\Jobs\ProcessChargilyWebhookJob;
 
 class ChargilyWebhookController
 {
@@ -18,13 +20,9 @@ class ChargilyWebhookController
             'signing_secret' => config('chargily.secret'),
             'signature_header_name' => 'Signature',
             'signature_validator' => ChargilySignatureValidator::class,
-            'webhook_profile' => config('chargily.profile'),
+            'webhook_profile' => ProcessEverythingWebhookProfile::class,
             'webhook_model' => config('chargily.model'),
-            'process_webhook_job' => config('chargily.job'),
-            'store_headers' => [
-                'X-GitHub-Event',
-                'X-GitHub-Delivery',
-            ],
+            'process_webhook_job' => ProcessChargilyWebhookJob::class
         ]);
 
         try {

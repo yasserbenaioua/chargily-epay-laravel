@@ -1,6 +1,6 @@
 <?php
 
-namespace YasserBenaioua\Chargily;
+namespace YasserBenaioua\Chargily\Validators;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

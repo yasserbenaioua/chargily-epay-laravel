@@ -6,8 +6,6 @@ use Illuminate\Support\Str;
 it('will return the redirect url', function () {
     config()->set('chargily.key', 'api_MmrIjunBOQuJIx9VtJscf5qWNpePJdjIqwHtvjo7unluwO5dpTQnjkq1jesfqtRu');
 
-    $epay_config = config('chargily');
-
     $chargily = new Chargily([
         //mode
         'mode' => 'EDAHABIA', //OR CIB
@@ -30,3 +28,26 @@ it('will return the redirect url', function () {
     expect($redirectUrl)->toStartWith('https://epay.chargily.com.dz');
     expect($tokenLength)->toEqual(64);
 });
+
+it('will throw an exception if validation failed', function () {
+    $this->withoutExceptionHandling();
+
+    config()->set('chargily.back_url', 'invalid-url');
+
+    $chargily = new Chargily([
+        //mode
+        'mode' => 'EDAHABIA', //OR CIB
+
+        //payment details
+        'payment' => [
+            'number' => rand(), // Payment or order number
+            'client_name' => 'client name', // Client name
+            'client_email' => 'client_email@mail.com', // This is where client receive payment receipt after confirmation
+            'amount' => 175, //this the amount must be greater than or equal 75
+            'discount' => 0, //this is discount percentage between 0 and 99
+            'description' => 'payment-description', // this is the payment description
+        ],
+    ]);
+
+    $chargily->getRedirectUrl();
+})->throws(Illuminate\Validation\ValidationException::class, 'The urls.back_url must be a valid URL.');

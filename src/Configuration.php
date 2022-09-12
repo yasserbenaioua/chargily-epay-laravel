@@ -84,7 +84,7 @@ class Configuration
      */
     public function validateRedirectConfigurations(): array
     {
-        return (new RedirectUrlConfigurationsValidator($this->configurations, true))->validate();
+        return (new RedirectUrlConfigurationsValidator($this->configurations))->validate();
     }
 
     /**

@@ -1,14 +1,30 @@
 <?php
 
-use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
-use YasserBenaioua\Chargily\Jobs\ProcessChargilyWebhookJob;
 use YasserBenaioua\Chargily\Models\ChargilyWebhookCall;
 
 return [
 
+    /*
+    * Chargily Api Key
+    * You can found it on your epay.chargily.com.dz Dashboard.
+    */
     'key' => env('CHARGILY_API_KEY'),
+
+    /*
+    * Chargily Api Secret
+    * Your Chargily secret, which is used to verify incoming requests from Chargily.
+    * You can found it on your epay.chargily.com.dz Dashboard.
+    */
     'secret' => env('CHARGILY_API_SECRET'),
+
+    /*
+    * This is where client redirected after payment processing.
+    */
     'back_url' => 'https://c85e-41-105-5-5.ngrok.io/back',
+
+    /*
+    * This is where you receive payment informations.
+    */
     'webhook_url' => 'https://c85e-41-105-5-5.ngrok.io/chargily/webhook',
 
     /*
@@ -32,17 +48,6 @@ return [
      * More info on pruning: https://laravel.com/docs/8.x/eloquent#pruning-models
      */
     'prune_webhook_calls_after_days' => 10,
-
-    /*
-     * The classname of the job to be used. The class should equal or extend
-     * YasserBenaioua\Chargily\ProcessChargilyWebhookJob.
-     */
-    'job' => ProcessChargilyWebhookJob::class,
-
-    /**
-     * This class determines if the webhook call should be stored and processed.
-     */
-    'profile' => ProcessEverythingWebhookProfile::class,
 
     /*
      * When disabled, the package will not verify if the signature is valid.

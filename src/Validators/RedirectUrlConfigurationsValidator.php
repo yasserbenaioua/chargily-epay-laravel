@@ -3,8 +3,6 @@
 namespace YasserBenaioua\Chargily\Validators;
 
 use Illuminate\Support\Facades\Validator;
-use YasserBenaioua\Chargily\Exceptions\InvalidConfigurationsException;
-use YasserBenaioua\Chargily\Exceptions\ValidationException;
 
 class RedirectUrlConfigurationsValidator
 {
@@ -14,13 +12,6 @@ class RedirectUrlConfigurationsValidator
      * @var mixed
      */
     protected mixed $configurations;
-
-    /**
-     * debug
-     *
-     * @var bool
-     */
-    protected bool $debug;
 
     /**
      * availlable_modes
@@ -37,10 +28,9 @@ class RedirectUrlConfigurationsValidator
      * @param  array  $configurations
      * @return void
      */
-    public function __construct(array $configurations, bool $debug = true)
+    public function __construct(array $configurations)
     {
         $this->configurations = $configurations;
-        $this->debug = $debug;
     }
 
     /**
@@ -65,26 +55,7 @@ class RedirectUrlConfigurationsValidator
             'payment.description' => 'required',
         ]);
         $validation->validate();
-        if ($validation->fails()) {
-            throw new ValidationException($validation->errors());
-        }
 
         return $configurations;
-    }
-
-    /**
-     * throwException
-     *
-     * @param  string  $message
-     * @param  int  $code
-     * @return void
-     */
-    protected function throwException(string $message, int $code = 0)
-    {
-        if ($this->debug) {
-            throw new InvalidConfigurationsException($message, $code);
-        } else {
-            return http_response_code(500);
-        }
     }
 }

@@ -13,22 +13,6 @@ class ChargilyWebhookCall extends WebhookCall
 
     public $table = 'chargily_webhook_calls';
 
-    // public function eventName(): string
-    // {
-    //     return $this->headerBag()->get('X-GitHub-Event');
-    // }
-
-    public function eventActionName(): string
-    {
-        $actionName = $this->payload('action') ?? null;
-
-        if (! $actionName) {
-            return $this->eventName();
-        }
-
-        return "{$this->eventName()}.$actionName";
-    }
-
     public function payload(string $key = null): mixed
     {
         if (! is_null($key)) {
