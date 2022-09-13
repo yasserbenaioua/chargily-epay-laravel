@@ -20,12 +20,12 @@ return [
     /*
     * This is where client redirected after payment processing.
     */
-    'back_url' => 'https://c85e-41-105-5-5.ngrok.io/back',
+    'back_url' => 'valid-url-to-redirect-after-payment',
 
     /*
     * This is where you receive payment informations.
     */
-    'webhook_url' => 'https://c85e-41-105-5-5.ngrok.io/chargily/webhook',
+    'webhook_url' => 'valid-url-to-receive-payment-informations',
 
     /*
      * You can define the job that should be run when a chargily webhook hits your application

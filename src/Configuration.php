@@ -80,9 +80,9 @@ class Configuration
      * @method validateRedirectConfigurations
      * This method will validate the redirect configuration
      *
-     * @return array
+     * @return mixed
      */
-    public function validateRedirectConfigurations(): array
+    public function validateRedirectConfigurations(): mixed
     {
         return (new RedirectUrlConfigurationsValidator($this->configurations))->validate();
     }

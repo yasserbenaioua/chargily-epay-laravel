@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Str;
 use YasserBenaioua\Chargily\Chargily;
+use Illuminate\Validation\ValidationException;
 
 it('will return the redirect url', function () {
-    config()->set('chargily.key', 'api_MmrIjunBOQuJIx9VtJscf5qWNpePJdjIqwHtvjo7unluwO5dpTQnjkq1jesfqtRu');
-
     $chargily = new Chargily([
         //mode
         'mode' => 'EDAHABIA', //OR CIB
@@ -50,4 +49,4 @@ it('will throw an exception if validation failed', function () {
     ]);
 
     $chargily->getRedirectUrl();
-})->throws(Illuminate\Validation\ValidationException::class, 'The urls.back_url must be a valid URL.');
+})->throws(ValidationException::class);
