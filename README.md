@@ -6,8 +6,6 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/yasserbenaioua/chargily-epay-laravel/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/yasserbenaioua/chargily-epay-laravel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/yasserbenaioua/chargily-epay-laravel.svg?style=flat-square)](https://packagist.org/packages/yasserbenaioua/chargily-epay-laravel)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
 ## Installation
 
 You can install the package via composer:
