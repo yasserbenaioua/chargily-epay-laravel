@@ -2,8 +2,6 @@
 
 namespace YasserBenaioua\Chargily;
 
-use YasserBenaioua\Chargily\Configuration;
-
 class Chargily
 {
     /**

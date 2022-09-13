@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Str;
-use YasserBenaioua\Chargily\Chargily;
 use Illuminate\Validation\ValidationException;
+use YasserBenaioua\Chargily\Chargily;
 
 it('will return the redirect url', function () {
     $chargily = new Chargily([

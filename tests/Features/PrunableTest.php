@@ -1,7 +1,7 @@
 <?php
 
-use YasserBenaioua\Chargily\Models\ChargilyWebhookCall;
 use function Spatie\PestPluginTestTime\testTime;
+use YasserBenaioua\Chargily\Models\ChargilyWebhookCall;
 
 it('will prune records after the configured amount of days', function () {
     testTime()->freeze();
