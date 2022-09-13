@@ -108,7 +108,7 @@ protected $except = [
 ```
 
 ## Usage
-Firsly, you may create a payment like this:
+Firstly, you may create a payment like this:
 ```php
 use YasserBenaioua\Chargily\Chargily;
 
