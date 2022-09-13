@@ -126,7 +126,7 @@ $chargily = new Chargily([
     ]
 ]);
 ```
-then use `getRedirectUrl()` methode to get the checkout link:
+then use `getRedirectUrl()` method to get the checkout link:
 ```php
 use YasserBenaioua\Chargily\Chargily;
 
@@ -155,8 +155,6 @@ Chargily will sign all requests hitting the webhook url of your app. This packag
 Unless something goes terribly wrong, this package will always respond with a `200` to webhook requests. All webhook requests with a valid signature will be logged in the `chargily_webhook_calls` table. The table has a payload column where the entire payload of the incoming webhook is saved.
 
 If the signature is not valid, the request will not be logged in the `chargily_webhook_calls` table but a `Spatie\WebhookClient\Exceptions\InvalidWebhookSignature` exception will be thrown. If something goes wrong during the webhook request the thrown exception will be saved in the exception column. In that case the controller will send a `500` instead of `200`.
-
-There are two ways this package enables you to handle webhook requests: you can opt to queue a job or listen to the events the package will fire.
 
 To handle webhook requests you can define a job that does the work. Here's an example of such a job:
 
