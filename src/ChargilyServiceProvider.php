@@ -15,16 +15,7 @@ class ChargilyServiceProvider extends PackageServiceProvider
         $package
             ->name('chargily')
             ->hasConfigFile('chargily')
-            ->hasMigration('create_chargily_webhook_calls_table')
-            ->hasInstallCommand(function (InstallCommand $command) {
-                $command
-                    ->publishConfigFile()
-                    ->publishMigrations()
-                    ->askToStarRepoOnGitHub('yasserbenaioua/chargily-epay-laravel')
-                    ->endWith(function (InstallCommand $installCommand) {
-                        $installCommand->info('Thank you very much for installing this package');
-                    });
-            });
+            ->hasMigration('create_chargily_webhook_calls_table');
     }
 
     public function bootingPackage()
