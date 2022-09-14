@@ -5,6 +5,11 @@ use YasserBenaioua\Chargily\Chargily;
 use Illuminate\Validation\ValidationException;
 
 it('will return the redirect url', function () {
+
+    config()->set('chargily.key', 'api_MmrIjunBOQuJIx9VtJscf5qWNpePJdjIqwHtvjo7unluwO5dpTQnjkq1jesfqtRu');
+    config()->set('chargily.back_url', 'https://laravel.com');
+    config()->set('chargily.webhook_url', 'https://laravel.com');
+
     $chargily = new Chargily([
         //mode
         'mode' => 'EDAHABIA', //OR CIB
