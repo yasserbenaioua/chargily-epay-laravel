@@ -12,7 +12,7 @@ class ChargilyServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package
-            ->name('chargily-epay-laravel')
+            ->name('chargily')
             ->hasConfigFile('chargily')
             ->hasMigration('create_chargily_webhook_calls_table');
     }
