@@ -82,7 +82,7 @@ it('will throw an exception when a non-existing job class is used', function () 
     $this->withoutExceptionHandling();
 
     config()->set('chargily.jobs', [
-        NotExistingClass::class
+        NotExistingClass::class,
     ]);
 
     $payload = ['action' => 'created'];

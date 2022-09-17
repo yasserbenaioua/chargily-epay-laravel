@@ -8,8 +8,8 @@ use Spatie\WebhookClient\WebhookConfig;
 use Spatie\WebhookClient\WebhookProcessor;
 use Spatie\WebhookClient\WebhookProfile\ProcessEverythingWebhookProfile;
 use Symfony\Component\HttpFoundation\Response;
-use YasserBenaioua\Chargily\Validators\ChargilySignatureValidator;
 use YasserBenaioua\Chargily\Jobs\ProcessChargilyWebhookJob;
+use YasserBenaioua\Chargily\Validators\ChargilySignatureValidator;
 
 class ChargilyWebhookController
 {
@@ -22,7 +22,7 @@ class ChargilyWebhookController
             'signature_validator' => ChargilySignatureValidator::class,
             'webhook_profile' => ProcessEverythingWebhookProfile::class,
             'webhook_model' => config('chargily.model'),
-            'process_webhook_job' => ProcessChargilyWebhookJob::class
+            'process_webhook_job' => ProcessChargilyWebhookJob::class,
         ]);
 
         try {

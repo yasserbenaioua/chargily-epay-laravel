@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Str;
-use YasserBenaioua\Chargily\Chargily;
 use Illuminate\Validation\ValidationException;
 use Mockery\MockInterface;
+use YasserBenaioua\Chargily\Chargily;
 use YasserBenaioua\Chargily\RedirectUrl;
 
 it('will return the redirect url', function () {
