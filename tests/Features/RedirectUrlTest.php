@@ -3,29 +3,20 @@
 use Illuminate\Support\Str;
 use YasserBenaioua\Chargily\Chargily;
 use Illuminate\Validation\ValidationException;
+use Mockery\MockInterface;
+use YasserBenaioua\Chargily\RedirectUrl;
 
 it('will return the redirect url', function () {
+    $this->instance(
+        RedirectUrl::class,
+        Mockery::mock(RedirectUrl::class, function (MockInterface $mock) {
+            $mock->shouldReceive('getRedirectUrl')->andReturn(checkoutUrl());
+        })
+    );
 
-    config()->set('chargily.key', 'api_MmrIjunBOQuJIx9VtJscf5qWNpePJdjIqwHtvjo7unluwO5dpTQnjkq1jesfqtRu');
-    config()->set('chargily.back_url', 'https://laravel.com');
-    config()->set('chargily.webhook_url', 'https://laravel.com');
+    $redirectUrlClass = $this->app->make(RedirectUrl::class);
 
-    $chargily = new Chargily([
-        //mode
-        'mode' => 'EDAHABIA', //OR CIB
-
-        //payment details
-        'payment' => [
-            'number' => rand(), // Payment or order number
-            'client_name' => 'client name', // Client name
-            'client_email' => 'client_email@mail.com', // This is where client receive payment receipt after confirmation
-            'amount' => 175, //this the amount must be greater than or equal 75
-            'discount' => 0, //this is discount percentage between 0 and 99
-            'description' => 'payment-description', // this is the payment description
-        ],
-    ]);
-
-    $redirectUrl = $chargily->getRedirectUrl();
+    $redirectUrl = $redirectUrlClass->getRedirectUrl();
     $token = Str::after($redirectUrl, 'checkout/');
     $tokenLength = Str::of($token)->length();
 
@@ -38,20 +29,7 @@ it('will throw an exception if validation failed', function () {
 
     config()->set('chargily.back_url', 'invalid-url');
 
-    $chargily = new Chargily([
-        //mode
-        'mode' => 'EDAHABIA', //OR CIB
-
-        //payment details
-        'payment' => [
-            'number' => rand(), // Payment or order number
-            'client_name' => 'client name', // Client name
-            'client_email' => 'client_email@mail.com', // This is where client receive payment receipt after confirmation
-            'amount' => 175, //this the amount must be greater than or equal 75
-            'discount' => 0, //this is discount percentage between 0 and 99
-            'description' => 'payment-description', // this is the payment description
-        ],
-    ]);
+    $chargily = new Chargily(configs());
 
     $chargily->getRedirectUrl();
 })->throws(ValidationException::class);
