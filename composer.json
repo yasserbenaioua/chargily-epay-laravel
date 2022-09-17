@@ -4,7 +4,10 @@
     "keywords": [
         "yasserbenaioua",
         "laravel",
-        "chargily-epay-laravel"
+        "chargily-epay-laravel",
+        "chargily",
+        "edahabia",
+        "cib"
     ],
     "homepage": "https://github.com/yasserbenaioua/chargily-epay-laravel",
     "license": "MIT",
@@ -26,7 +29,6 @@
         "nunomaduro/collision": "^5.5|^6.0",
         "orchestra/testbench": "^6.24|^7.0",
         "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-mock": "^1.0",
         "spatie/pest-plugin-test-time": "^1.0"
     },
     "autoload": {
